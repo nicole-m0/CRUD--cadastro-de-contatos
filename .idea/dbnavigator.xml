@@ -75,7 +75,7 @@ CREATE TABLE logs (
     data_hora DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 ALTER TABLE logs ADD COLUMN descricao TEXT;
-
+ALTER TABLE logs ADD COLUMN sql_execultado TEXT;
 
 -- view
 drop view vw_clientes_completos;

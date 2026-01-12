@@ -13,41 +13,40 @@
     </nav>
 
     <main class="container">
+    <div class="topo-clientes">
+        <a href="/listar_cliente" class="btn-inicio">← Voltar</a>
+    </div>
 
-        <a href="/listar_cliente" class="btn">← Voltar para Clientes</a>
+    <section class="add-card">
+        <h2 class="titulo-lista">📜 Histórico de Operações</h2>
 
-        <section class="card">
-            <h2>Histórico de Ações</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Tabela</th>
-                        <th>Operação</th>
-                        <th>Descrição</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for id, tabela, operacao, data_hora, descricao in logs %}
-                    <tr>
-                        <td>{{ data_hora }}</td>
-                        <td>{{ tabela }}</td>
-                        <td>
-                            <span class="acao {{ operacao|lower }}">
-                                {{ operacao }}
-                            </span>
-                        </td>
-                        <td>{{ descricao }}</td>
-                    </tr>
-                    {% end %}
-                </tbody>
-            </table>
-
-        </section>
-
-    </main>
+        <table class="tabela-historico">
+            <thead>
+                <tr>
+                    <th>Data / Hora</th>
+                    <th>Tabela</th>
+                    <th>Ação</th>
+                    <th>Descrição</th>
+                    <th>Comando</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log[3] }}</td> <td>{{ log[1] }}</td> <td>
+                        <span class="badge {{ log[2].lower() }}">
+                            {{ log[2] }}
+                        </span>
+                    </td>
+                    <td>{{ log[4] }}</td> <td>
+                        <a href="/ver_sql/{{ log[0] }}" class="btn-sql">Ver SQL</a>
+                    </td>
+                </tr>
+                {% end %}
+            </tbody>
+        </table>
+    </section>
+</main>
 
 </body>
 </html>

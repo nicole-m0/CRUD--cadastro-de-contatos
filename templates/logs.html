@@ -2,58 +2,52 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Histórico</title>
-    <link rel="stylesheet" href="{{ static_url('css/style.css') }}?v=3.0">
+    <title>Histórico de Alterações</title>
+    <link rel="stylesheet" href="{{ static_url('css/style.css') }}">
 </head>
 <body>
 
-<header class="app-header">
-    📜 Histórico de Alterações
-</header>
+    <header class="app-header">
+        📜 Histórico de Alterações
+    </header>
 
-<div class="container">
+    <main class="container">
+        <div class="topo-clientes">
+            <a href="/listar_cliente" class="btn-inicio">← Voltar</a>
+        </div>
 
-    <div class="topo-clientes">
-        <a href="/listar_cliente" class="btn-inicio">← Voltar</a>
-    </div>
+        <section class="add-card">
+            <h2 class="titulo-lista">Registros do Sistema</h2>
 
-    <div class="card">
-        <h2>Registros do Sistema</h2>
-
-        {% if logs %}
-        <table class="tabela-historico">
-            <thead>
-                <tr>
-                    <th>Data / Hora</th>
-                    <th>Tabela</th>
-                    <th>Ação</th>
-                    <th>Descrição</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for id, tabela, operacao, operacao_css, data_hora, descricao in logs %}
-                <tr>
-                    <td>{{ data_hora }}</td>
-                    <td>{{ tabela }}</td>
-                    <td>
-                        <span class="badge {{ operacao_css }}">
-                            {{ operacao }}
-                        </span>
-                    </td>
-                    <td>{{ descricao }}</td>
-                </tr>
-                {% end %}
-
-            </tbody>
-        </table>
-        {% else %}
-            <p class="msg-vazia">Nenhuma ação registrada.</p>
-        {% end %}
-
-    </div>
-
-</div>
+            <table class="tabela-historico">
+                <thead>
+                    <tr>
+                        <th>Data / Hora</th>
+                        <th>Tabela</th>
+                        <th>Ação</th>
+                        <th>Descrição</th>
+                        <th>SQL</th> </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td>{{ log[3] }}</td>
+                        <td>{{ log[1] }}</td>
+                        <td>
+                            <span class="badge {{ log[2].lower() }}">
+                                {{ log[2] }}
+                            </span>
+                        </td>
+                        <td>{{ log[4] }}</td>
+                        <td>
+                            <a href="/ver_sql/{{ log[0] }}" class="btn-sql">Ver SQL</a>
+                        </td>
+                    </tr>
+                    {% end %}
+                </tbody>
+            </table>
+        </section>
+    </main>
 
 </body>
 </html>

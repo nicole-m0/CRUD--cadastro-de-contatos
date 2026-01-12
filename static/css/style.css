@@ -238,3 +238,19 @@ button {
     background: #c62828;
     color: #fff;
 }
+.btn-sql {
+    padding: 6px 12px;
+    background-color: #262626; /* Cinza quase preto */
+    color: #ffffff; /* Texto branco para dar contraste */
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+
+.btn-sql:hover {
+    background-color: #404040; /* Um cinza um pouco mais claro ao passar o mouse */
+    color: #00ff88; /* Opcional: muda a cor do texto para o verde do seu SQL no hover */
+}

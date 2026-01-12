@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Comando SQL Executado</title>
+    <link rel="stylesheet" href="{{ static_url('css/style.css') }}">
+</head>
+<body>
+
+    <header class="app-header">
+        🧾 Detalhes do Comando SQL
+    </header>
+
+    <main class="container">
+        <div class="topo-clientes">
+            <a href="/historico" class="btn-inicio">← Voltar ao Histórico</a>
+        </div>
+
+        <section class="add-card">
+            <h2 class="titulo-lista">Código SQL Registrado:</h2>
+
+            <pre class="sql-box">{{ sql }}</pre>
+        </section>
+    </main>
+
+</body>
+</html>
