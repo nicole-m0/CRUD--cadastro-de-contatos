@@ -254,3 +254,35 @@ button {
     background-color: #404040; /* Um cinza um pouco mais claro ao passar o mouse */
     color: #00ff88; /* Opcional: muda a cor do texto para o verde do seu SQL no hover */
 }
+
+/* Estilo para o botão Clientes Completos (Roxo/Lilás como na imagem) */
+.btn-completos {
+    background-color: #8e44ad; /* Roxo */
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.btn-completos:hover {
+    background-color: #7d3c98;
+}
+
+/* Estilo para o botão Ver SQL da Listagem (Cinza escuro para destacar o branco) */
+.btn-sql-listagem {
+    background-color: #444; /* Cinza escuro */
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.btn-sql-listagem:hover {
+    background-color: #333;
+}

@@ -94,43 +94,32 @@ FROM contatos c
 LEFT JOIN status_cliente s ON c.status_id = s.id
 LEFT JOIN enderecos e ON c.id = e.contato_id;
 
+DROP TRIGGER IF EXISTS trg_insert_contatos;
+DROP TRIGGER IF EXISTS trg_update_contatos;
+DROP TRIGGER IF EXISTS trg_delete_contatos;
+
 -- triggers
 
 -- insert
-CREATE TRIGGER trg_insert_contatos
-AFTER INSERT ON contatos
+CREATE TRIGGER trg_insert_contatos AFTER INSERT ON contatos
 BEGIN
-    INSERT INTO logs (tabela, operacao, descricao)
-    VALUES (
-        'contatos',
-        'INSERT',
-        'Contato "' || NEW.nome || '" foi ADICIONADO'
-    );
+    INSERT INTO logs (tabela, operacao, descricao, data_hora)
+    VALUES ('contatos', 'INSERT', 'Contato "' || NEW.nome || '" foi ADICIONADO', strftime('%d/%m/%Y', 'now', 'localtime'));
 END;
 
 
 -- update
-CREATE TRIGGER trg_update_contatos
-AFTER UPDATE ON contatos
+CREATE TRIGGER trg_update_contatos AFTER UPDATE ON contatos
 BEGIN
-    INSERT INTO logs (tabela, operacao, descricao)
-    VALUES (
-        'contatos',
-        'UPDATE',
-        'Contato "' || NEW.nome || '" foi EDITADO'
-    );
+    INSERT INTO logs (tabela, operacao, descricao, data_hora)
+    VALUES ('contatos', 'UPDATE', 'Contato "' || NEW.nome || '" foi EDITADO', strftime('%d/%m/%Y', 'now', 'localtime'));
 END;
 
 -- delete
-CREATE TRIGGER trg_delete_contatos
-AFTER DELETE ON contatos
+CREATE TRIGGER trg_delete_contatos AFTER DELETE ON contatos
 BEGIN
-    INSERT INTO logs (tabela, operacao, descricao)
-    VALUES (
-        'contatos',
-        'DELETE',
-        'Contato "' || OLD.nome || '" foi EXCLUÍDO'
-    );
+    INSERT INTO logs (tabela, operacao, descricao, data_hora)
+    VALUES ('contatos', 'DELETE', 'Contato "' || OLD.nome || '" foi EXCLUÍDO', strftime('%d/%m/%Y', 'now', 'localtime'));
 END;
 
 
@@ -231,7 +220,15 @@ SELECT * FROM vw_clientes_completos;
 DELETE FROM enderecos
 WHERE contato_id = 3;
 DELETE FROM contatos
-WHERE id = 3;]]></console>
+WHERE id = 3;
+
+DELETE FROM logs
+WHERE id NOT IN (
+    SELECT MIN(id)
+    FROM logs
+    GROUP BY tabela, operacao, descricao, data_hora
+);
+DELETE FROM logs;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

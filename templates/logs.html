@@ -29,21 +29,21 @@
                         <th>SQL</th> </tr>
                 </thead>
                 <tbody>
-                    {% for log in logs %}
-                    <tr>
-                        <td>{{ log[3] }}</td>
-                        <td>{{ log[1] }}</td>
-                        <td>
-                            <span class="badge {{ log[2].lower() }}">
-                                {{ log[2] }}
-                            </span>
-                        </td>
-                        <td>{{ log[4] }}</td>
-                        <td>
-                            <a href="/ver_sql/{{ log[0] }}" class="btn-sql">Ver SQL</a>
-                        </td>
-                    </tr>
-                    {% end %}
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log['data_hora'] }}</td>
+                    <td>{{ log['tabela'] }}</td>
+                    <td>
+                        <span class="badge {{ log['classe_css'] }}">
+                            {{ log['operacao'] }}
+                        </span>
+                    </td>
+                    <td>{{ log['descricao'] }}</td>
+                    <td>
+                        <a href="/ver_sql/{{ log['id'] }}" class="btn-sql">Ver SQL</a>
+                    </td>
+                </tr>
+                {% end %}
                 </tbody>
             </table>
         </section>
