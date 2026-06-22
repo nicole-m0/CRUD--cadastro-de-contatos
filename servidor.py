@@ -3,7 +3,7 @@ import sqlite3
 import tornado.ioloop
 import tornado.web
 
-
+# baco de dados + crud
 # ------------------ CONEXÃO COM O BANCO ------------------
 def conexao_db(query, valores=None):
     conexao = sqlite3.connect("db/db.sqlite3")
