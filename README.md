@@ -49,7 +49,7 @@ Este projeto foi desenvolvido para praticar:
 1. Clone o repositório
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/nicole-m0/CRUD--cadastro-de-contatos/
 ```
 
 2. Instale as dependências
